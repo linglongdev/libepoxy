@@ -1,0 +1,30 @@
+package:
+  id: libepoxy
+  name: libepoxy
+  version: 1.5.3
+  kind: lib
+  discription: |
+    libepoxy.
+
+base:
+  id: org.deepin.base
+  version: 20.5.0
+
+#depends: xutils x11 mesa xauth xvfb
+source:
+  kind: git
+  url: https://github.com/deepin-community/libepoxy.git
+  version: master
+  commit: 3b0d5441535a02349e78da4bc1afc58d172adbc6
+  patch: []
+build:
+  kind: manual
+  manual:
+    configure: |
+      #exec bash
+      mkdir build
+      cd build
+      meson --buildtype=plain \
+            --prefix=${PREFIX} \
+            --libdir=lib ..
+      ninja install
